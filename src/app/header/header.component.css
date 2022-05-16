@@ -26,6 +26,7 @@
   -moz-background-clip: text;
   -moz-text-fill-color: transparent;
 
+  cursor: pointer;
 }
 
 .right-container {
@@ -37,5 +38,6 @@
 }
 
 .right-container p {
-  margin: 10px
+  margin: 10px;
+  cursor: pointer;
 }

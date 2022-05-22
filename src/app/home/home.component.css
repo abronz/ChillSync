@@ -1,0 +1,68 @@
+
+.home-container {
+  display: flex;
+  justify-content: center;
+}
+
+.video-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+
+
+}
+
+.player-container {
+  pointer-events: none;
+}
+
+.prg-player {
+  width: 100%;
+}
+
+button {
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.prg-container {
+  display: inline-block;
+  margin-left: 30px;
+  width: 70%;
+  background-color: rgb(158,158,158);
+  margin: 5px;
+  padding-left: 5px;
+  border-radius: 5px;
+}
+
+mat-slider {
+  cursor: pointer;
+}
+
+.query-container {
+  margin-bottom: 1000px;
+}
+
+.code-container {
+  display: inline-block;
+  border-radius: 5px;
+  background-color: rgb(158,158,158);
+  font-size: 10px
+}
+
+::ng-deep.mat-form-field-ripple {
+ /*change color of underline when focused*/
+ background-color: grey !important;;
+}
+
+mat-label {
+  color: black
+}
+
+.code-field {
+  width: 200px;
+}
+
+.code-btn {
+  color:black
+}

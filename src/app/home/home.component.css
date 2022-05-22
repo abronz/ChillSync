@@ -12,7 +12,7 @@
 
 }
 
-.ytplayer {
+#player {
   pointer-events: none;
 }
 
@@ -23,6 +23,6 @@ button {
 
 .prg-container {
   display: inline-block;
-  width: 80%;
+  width: 70%;
   margin-left: 30px;
 }

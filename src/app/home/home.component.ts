@@ -1,6 +1,7 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,6 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
   public YT: any
   public videoID: any;
   public player: any;
@@ -22,22 +22,34 @@ export class HomeComponent implements OnInit {
   timer: any;
   query: String;
 
+  private socket: Socket
+
+  constructor(private _socket: Socket) {
+    this.socket = _socket
+  }
+
+
   ngOnInit() {
     // initialize youtube API
-    this.videoID = "4VxdufqB9zg"  // default
+    this.videoID = "yyL1h20g8Vs"
+    //this.socket.emit("getVideo");
     var tag = document.createElement('script')
     tag.src = "https://www.youtube.com/iframe_api"
     var firstScriptTag = document.getElementsByTagName('script')[0]
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
     this.playerWidth = 1280
     this.playerHeight = 720
-    window['onYouTubeIframeAPIReady'] = () => { this.startVideo() }
+    window['onYouTubeIframeAPIReady'] = () => {
+      this.startVideo()
+      // progress bar
+      this.startSetInterval();
 
-    // progress bar
-    this.startSetInterval();
+      // code input
+      this.query = ""
 
-    // code input
-    this.query = ""
+      //server initialize
+      this.socketListeners(this.player)
+    }
   }
 
 
@@ -84,7 +96,7 @@ export class HomeComponent implements OnInit {
   onInputChange(event) {
     clearInterval(this.timer)
     var seekVal = this.player.getDuration()*(event.value/100)
-    this.player.seekTo(seekVal, true)
+    this.socket.emit("seekVideo", seekVal)
     this.startSetInterval();
   }
 
@@ -97,21 +109,45 @@ export class HomeComponent implements OnInit {
   }
 
   onPlayClicked() {
-    this.startSetInterval();
     if(window['YT'].PlayerState.PAUSED)
-      this.player.playVideo()
+      this.socket.emit("playVideo")
   }
 
   onPauseClicked() {
-    clearInterval(this.timer)
     if(window['YT'].PlayerState.PLAYING)
-      this.player.pauseVideo()
+      this.socket.emit("pauseVideo")
   }
 
   onCodeSubmit() {
     if(this.query.length != 0)
     {
-      this.player.loadVideoById(this.query)
+      this.socket.emit("changeVideo" ,this.query)
     }
+  }
+
+  socketListeners(player) {
+    this.socket.on('changeVideo', (videoID) => {
+      this.prgValue = 0
+      clearInterval(this.timer)
+      this.startSetInterval();
+      player.loadVideoById(videoID)
+    })
+
+    this.socket.on('seekVideo', (time) => {
+      player.seekTo(time, true)
+    })
+
+    this.socket.on('pauseVideo', () => {
+      clearInterval(this.timer)
+      player.pauseVideo()
+    })
+
+    this.socket.on('playVideo', () => {
+      this.startSetInterval();
+      player.playVideo()
+
+      if(window['YT'].PlayerState.PAUSED)
+        player.playVideo()
+    })
   }
 }

@@ -1,0 +1,16 @@
+
+
+.video-container {
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.ytplayer {
+  pointer-events: none;
+}
+
+.btn-container {
+  height: 40px;
+  background-color: black;
+}

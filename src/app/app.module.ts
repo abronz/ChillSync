@@ -17,7 +17,7 @@ import { FooterComponent } from './footer/footer.component';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+const config: SocketIoConfig = { url: 'https://git.heroku.com/chillsync-server.git:3000', options: {} };
 
 @NgModule({
   declarations: [

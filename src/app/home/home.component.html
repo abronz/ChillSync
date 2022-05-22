@@ -1,8 +1,17 @@
-<div class="video-container">
-  <iframe class="ytplayer" width="1280" height="720" [src]='safeURL' frameborder="0" allow="autoplay" allowfullscreen ></iframe>
+<div class="home-container">
 
-</div>
-<div class="btn-container">
+  <div class="video-container">
+    <iframe class="ytplayer" width="1280" height="720" [src]='safeURL' frameborder="0" allow="autoplay" allowfullscreen ></iframe>
 
-  <button mat-raised-button color="primary">Primary</button>
+    <div class="btn-container">
+      <button mat-raised-button color="primary">Play</button>
+      <button mat-raised-button color="primary">Pause</button>
+
+      <div class="prg-container">
+        <mat-progress-bar mode="prg-bar" value="40"></mat-progress-bar>
+      </div>
+
+    </div>
+  </div>
+
 </div>

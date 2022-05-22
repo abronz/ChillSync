@@ -1,6 +1,6 @@
 # ChillSync
 
-This is an Angular project made by Abronz Vizcarra with a solely purpose of watching youtube videos with multiple clients.
+This is a website project that allows multiple clients to watch a youtube video together synchronized using Socket.IO.
 
 ## Testing
 

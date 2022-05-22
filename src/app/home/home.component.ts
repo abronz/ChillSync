@@ -20,10 +20,11 @@ export class HomeComponent implements OnInit {
   prgValue: any;
   prgPause: Boolean = false
   timer: any;
+  query: String;
 
   ngOnInit() {
     // initialize youtube API
-    this.videoID = "4VxdufqB9zg"
+    this.videoID = "4VxdufqB9zg"  // default
     var tag = document.createElement('script')
     tag.src = "https://www.youtube.com/iframe_api"
     var firstScriptTag = document.getElementsByTagName('script')[0]
@@ -35,7 +36,10 @@ export class HomeComponent implements OnInit {
     // progress bar
     this.startSetInterval();
 
+    // code input
+    this.query = ""
   }
+
 
   startVideo() {
     this.reframed = false;
@@ -59,9 +63,6 @@ export class HomeComponent implements OnInit {
   }
 
   onPlayerStateChange(event) {
-    // switch(event.data) {
-
-    // }
   }
 
   onPlayerError(event) {
@@ -78,7 +79,6 @@ export class HomeComponent implements OnInit {
 
   onPlayerReady(event) {
     this.player.setVolume(20)
-    event.target.playVideo();
   }
 
   onInputChange(event) {
@@ -106,5 +106,12 @@ export class HomeComponent implements OnInit {
     clearInterval(this.timer)
     if(window['YT'].PlayerState.PLAYING)
       this.player.pauseVideo()
+  }
+
+  onCodeSubmit() {
+    if(this.query.length != 0)
+    {
+      this.player.loadVideoById(this.query)
+    }
   }
 }

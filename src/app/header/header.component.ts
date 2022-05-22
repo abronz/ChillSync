@@ -15,10 +15,10 @@ export class HeaderComponent implements OnInit {
 
 
   homeClicked() {
-    this.router.navigate(['home']);
+    this.router.navigate(['home']).then(() => location.reload());
   }
 
   aboutClicked() {
-    this.router.navigate(['about']);
+    this.router.navigate(['about']).then(() => location.reload());
   }
 }

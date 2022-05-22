@@ -10,6 +10,16 @@
       <div class="prg-container">
         <mat-slider class="prg-player" aria-label="unit(s)" [value]="prgValue" [max]="100" [min]="0" (input)="onInputChange($event)"></mat-slider>
       </div>
+
+      <div class="code-container">
+        <mat-form-field class="code-field" appearance="fill" color="primary">
+          <mat-label>Paste code here</mat-label>
+          <input matInput type="text" [(ngModel)]="query">
+          <button class="code-btn" matSuffix mat-button (click)="onCodeSubmit()">
+            Enter
+          </button>
+        </mat-form-field>
+      </div>
     </div>
   </div>
 </div>

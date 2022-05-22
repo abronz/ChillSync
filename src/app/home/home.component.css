@@ -42,3 +42,27 @@ mat-slider {
 .query-container {
   margin-bottom: 1000px;
 }
+
+.code-container {
+  display: inline-block;
+  border-radius: 5px;
+  background-color: rgb(158,158,158);
+  font-size: 10px
+}
+
+::ng-deep.mat-form-field-ripple {
+ /*change color of underline when focused*/
+ background-color: grey !important;;
+}
+
+mat-label {
+  color: black
+}
+
+.code-field {
+  width: 200px;
+}
+
+.code-btn {
+  color:black
+}

@@ -9,12 +9,9 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class HomeComponent implements OnInit {
 
-  constructor( private sanitizer: DomSanitizer) { }
-
-  URL: string
-
+  constructor() { }
   public YT: any
-  public video: any;
+  public videoID: any;
   public player: any;
   playerHeight: any;
   playerWidth: any;
@@ -26,7 +23,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     // initialize youtube API
-    this.video = "4VxdufqB9zg"
+    this.videoID = "4VxdufqB9zg"
     var tag = document.createElement('script')
     tag.src = "https://www.youtube.com/iframe_api"
     var firstScriptTag = document.getElementsByTagName('script')[0]
@@ -45,9 +42,10 @@ export class HomeComponent implements OnInit {
     this.player = new window['YT'].Player('player', {
       height: this.playerHeight,
       width: this.playerWidth,
-      videoId: this.video,
+      videoId: this.videoID,
       playerVars: {
         disablekb: 1,
+        controls: 0,
         modestbranding: 1,
         rel: 0,
         showinfo: 0
@@ -69,7 +67,7 @@ export class HomeComponent implements OnInit {
   onPlayerError(event) {
     switch(event.data) {
       case 2:
-        console.log(`` + this.video)
+        console.log(`` + this.videoID)
         break
       case 100:
         break;
@@ -79,13 +77,12 @@ export class HomeComponent implements OnInit {
   }
 
   onPlayerReady(event) {
-    this.player.setVolume(0)
+    this.player.setVolume(20)
     event.target.playVideo();
   }
 
   onInputChange(event) {
     clearInterval(this.timer)
-    console.log(this.player.getDuration())
     var seekVal = this.player.getDuration()*(event.value/100)
     this.player.seekTo(seekVal, true)
     this.startSetInterval();
@@ -97,5 +94,17 @@ export class HomeComponent implements OnInit {
         this.prgValue = this.player.getCurrentTime()/this.player.getDuration()*100;
       }
     }, 200)
+  }
+
+  onPlayClicked() {
+    this.startSetInterval();
+    if(window['YT'].PlayerState.PAUSED)
+      this.player.playVideo()
+  }
+
+  onPauseClicked() {
+    clearInterval(this.timer)
+    if(window['YT'].PlayerState.PLAYING)
+      this.player.pauseVideo()
   }
 }

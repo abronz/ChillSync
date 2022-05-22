@@ -12,7 +12,7 @@
 
 }
 
-#player {
+.player-container {
   pointer-events: none;
 }
 
@@ -35,7 +35,10 @@ button {
   border-radius: 5px;
 }
 
-.mat-slider {
-      transition: none;
+mat-slider {
+  cursor: pointer;
+}
 
+.query-container {
+  margin-bottom: 1000px;
 }

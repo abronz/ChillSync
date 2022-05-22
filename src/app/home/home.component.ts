@@ -20,9 +20,12 @@ export class HomeComponent implements OnInit {
   playerWidth: any;
   public reframed: Boolean = false;
 
+  prgValue: any;
+  prgPause: Boolean = false
+  timer: any;
+
   ngOnInit() {
-    // this.URL = "https://www.youtube.com/watch?v=4VxdufqB9zg";
-    // this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/4VxdufqB9zg'+this.playerVars)
+    // initialize youtube API
     this.video = "4VxdufqB9zg"
     var tag = document.createElement('script')
     tag.src = "https://www.youtube.com/iframe_api"
@@ -31,6 +34,10 @@ export class HomeComponent implements OnInit {
     this.playerWidth = 1280
     this.playerHeight = 720
     window['onYouTubeIframeAPIReady'] = () => { this.startVideo() }
+
+    // progress bar
+    this.startSetInterval();
+
   }
 
   startVideo() {
@@ -41,11 +48,9 @@ export class HomeComponent implements OnInit {
       videoId: this.video,
       playerVars: {
         disablekb: 1,
-        controls: 0,
         modestbranding: 1,
         rel: 0,
-        showinfo: 0,
-        autoplay: 0
+        showinfo: 0
       },
       events: {
         'onStateChange': this.onPlayerStateChange.bind(this),
@@ -74,11 +79,23 @@ export class HomeComponent implements OnInit {
   }
 
   onPlayerReady(event) {
-    this.player.setVolume(20)
+    this.player.setVolume(0)
+    event.target.playVideo();
   }
 
-  getPlayerTime() {
-    return Math.round(this.player.getCurrentTime())
+  onInputChange(event) {
+    clearInterval(this.timer)
+    console.log(this.player.getDuration())
+    var seekVal = this.player.getDuration()*(event.value/100)
+    this.player.seekTo(seekVal, true)
+    this.startSetInterval();
   }
 
+  startSetInterval() {
+    this.timer = setInterval(() => {
+      if(this.player != null) {
+        this.prgValue = this.player.getCurrentTime()/this.player.getDuration()*100;
+      }
+    }, 200)
+  }
 }

@@ -16,6 +16,10 @@
   pointer-events: none;
 }
 
+.prg-player {
+  width: 100%;
+}
+
 button {
   margin-left: 10px;
   margin-top: 5px;
@@ -23,6 +27,15 @@ button {
 
 .prg-container {
   display: inline-block;
-  width: 70%;
   margin-left: 30px;
+  width: 70%;
+  background-color: rgb(158,158,158);
+  margin: 5px;
+  padding-left: 5px;
+  border-radius: 5px;
+}
+
+.mat-slider {
+      transition: none;
+
 }

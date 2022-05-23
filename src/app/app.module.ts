@@ -17,7 +17,7 @@ import { FooterComponent } from './footer/footer.component';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-const config: SocketIoConfig = { url: 'http://chillsync-server.herokuapp.com', options: {} };
+const config: SocketIoConfig = { url: 'https://chillsync-server.herokuapp.com', options: {} };
 
 @NgModule({
   declarations: [

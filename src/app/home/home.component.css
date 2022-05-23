@@ -8,8 +8,6 @@
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-
-
 }
 
 .player-container {
@@ -85,4 +83,49 @@ mat-spinner {
 .count-text {
   color: green;
   font-size: 20px;
+}
+
+
+
+
+
+@media screen
+  and (min-device-width: 1441px)
+  {
+    .player-container {
+      width: 1280px;
+      height: 720px;
+    }
+}
+
+@media screen
+  and (max-device-width: 1440px)
+  {
+    .player-container {
+      width: 800px;
+      height: 400px;
+    }
+}
+
+@media screen
+  and (max-device-width: 768px)
+  {
+    .player-container {
+      width: 600px;
+      height: 300px;
+    }
+}
+
+
+
+@media screen
+  and (max-device-width: 425px)
+  {
+    .player-container {
+      width: 200px;
+    }
+
+    .count-container {
+      display: none;
+    }
 }

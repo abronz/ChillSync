@@ -39,8 +39,8 @@ export class HomeComponent implements OnInit {
     tag.src = "https://www.youtube.com/iframe_api"
     var firstScriptTag = document.getElementsByTagName('script')[0]
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
-    this.playerWidth = 1280
-    this.playerHeight = 720
+    this.playerWidth = "100%"
+    this.playerHeight = "100%"
     window['onYouTubeIframeAPIReady'] = () => {
       this.startVideo()
       // progress bar

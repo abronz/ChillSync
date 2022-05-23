@@ -41,3 +41,11 @@
   margin: 10px;
   cursor: pointer;
 }
+
+@media screen
+  and (max-device-width: 425px)
+  {
+    .right-container {
+      display: none;
+    }
+}

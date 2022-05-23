@@ -6,6 +6,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,6 +38,7 @@ const config: SocketIoConfig = { url: 'https://chillsync-server.herokuapp.com', 
     MatSliderModule,
     MatInputModule,
     MatIconModule,
+    MatProgressSpinnerModule,
     SocketIoModule.forRoot(config)
   ],
   providers: [],

@@ -66,3 +66,23 @@ mat-label {
 .code-btn {
   color:black
 }
+
+.spinner-container {
+  text-align: center;
+}
+
+mat-spinner {
+  margin: 0 auto;
+}
+
+.count-container{
+  margin-top: 10px;
+  margin-left: 10px;
+  color:blanchedalmond;
+  font-size: 15px;
+}
+
+.count-text {
+  color: green;
+  font-size: 20px;
+}

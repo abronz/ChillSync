@@ -21,6 +21,8 @@ export class HomeComponent implements OnInit {
   prgPause: Boolean = false
   timer: any;
   query: String;
+  loading: Boolean = true
+  userCount: Number = 1;
 
   private socket: Socket
 
@@ -48,6 +50,7 @@ export class HomeComponent implements OnInit {
       this.query = ""
 
       //server initialize
+      this.socket.emit("join", () => {})
       this.socketListeners(this.player)
     }
   }
@@ -126,6 +129,15 @@ export class HomeComponent implements OnInit {
   }
 
   socketListeners(player) {
+    this.socket.on("playerReady", () => {
+      this.loading = false
+    })
+
+    this.socket.on("changeUsersCount", (newCount) => {
+      console.log(newCount)
+      this.userCount = newCount
+    })
+
     this.socket.on('changeVideo', (videoID) => {
       this.prgValue = 0
       clearInterval(this.timer)
